@@ -3,16 +3,19 @@
                       http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
              version="2.0" xmlns="http://java.sun.com/xml/ns/persistence">
 
-    <persistence-unit name="h2db" transaction-type="RESOURCE_LOCAL">
+
+    <persistence-unit name="mysql">
         <properties>
-            <property name="javax.persistence.jdbc.driver" value="org.h2.Driver" />
-            <property name="javax.persistence.jdbc.url"    value="jdbc:h2:mem:test" />
-            <property name="javax.persistence.jdbc.user" value="sa" />
-            <property name="javax.persistence.jdbc.password" value="" />
-            <property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect"/>
-            <property name="hibernate.hbm2ddl.auto" value="create-drop" />
-            <property name="show_sql" value="true"/>
-            <property name="hibernate.temp.use_jdbc_metadata_defaults" value="false"/>
+            <property name="hibernate.archive.autodetection" value="class" />
+            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL8Dialect" />
+            <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver" />
+            <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/hibernate?serverTimezone=UTC" />
+            <property name="hibernate.connection.username" value="ag" />
+            <property name="hibernate.connection.password" value="ag" />
+            <!-- <property name="hibernate.show_sql" value="true"/>
+            <property name="hibernate.flushMode" value="FLUSH_AUTO" />-->
+            <property name="hibernate.hbm2ddl.auto" value="validate" />
         </properties>
     </persistence-unit>
+
 </persistence>
