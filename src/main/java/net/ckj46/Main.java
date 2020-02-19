@@ -9,14 +9,17 @@ import javax.persistence.Persistence;
 
 public class Main {
     public static void main (String[] args){
+        // utworzenie entity manager'a
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("mysql");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
 
+        // utworzenie obiektu encji
         Employee employee = new Employee();
         employee.setFirstName("Jarosław");
         employee.setLastName("Dupa-Kaczyński");
         employee.setSalary(1L);
 
+        // transakcja
         entityManager.getTransaction().begin();
         entityManager.persist(employee);
         entityManager.getTransaction().commit();
@@ -24,5 +27,4 @@ public class Main {
         entityManager.close();
         entityManagerFactory.close();
     }
-
 }
