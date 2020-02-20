@@ -1,6 +1,7 @@
 package net.ckj46;
 
 import net.ckj46.domain.Employee;
+import net.ckj46.domain.PossibleTypes;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -13,6 +14,14 @@ public class Main {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("mysql");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
 
+        // employeePersist(entityManager);
+        possibleTypes(entityManager);
+
+        entityManager.close();
+        entityManagerFactory.close();
+    }
+
+    private static void employeePersist(EntityManager entityManager) {
         // utworzenie obiektu encji
         Employee employee = new Employee();
         employee.setFirstName("Jarosław");
@@ -23,8 +32,21 @@ public class Main {
         entityManager.getTransaction().begin();
         entityManager.persist(employee);
         entityManager.getTransaction().commit();
+    }
 
-        entityManager.close();
-        entityManagerFactory.close();
+    private static void possibleTypes(EntityManager entityManager) {
+        // utworzenie obiektu encji
+        PossibleTypes possibleTypes = new PossibleTypes();
+        int[] ia = new int[4];
+        ia[0]=1;
+        ia[1]=2;
+        ia[2]=4;
+        ia[3]=8;
+        possibleTypes.setIntArray(ia);
+
+        // transakcja
+        entityManager.getTransaction().begin();
+        entityManager.persist(possibleTypes);
+        entityManager.getTransaction().commit();
     }
 }
