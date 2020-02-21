@@ -1,5 +1,6 @@
 package net.ckj46;
 
+import net.ckj46.domain.DateTimeExample;
 import net.ckj46.domain.Employee;
 import net.ckj46.domain.PossibleTypes;
 
@@ -7,6 +8,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class Main {
     public static void main (String[] args){
@@ -15,7 +18,8 @@ public class Main {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
 
         // employeePersist(entityManager);
-        possibleTypes(entityManager);
+        // possibleTypes(entityManager);
+        dateTimeExample(entityManager);
 
         entityManager.close();
         entityManagerFactory.close();
@@ -47,6 +51,17 @@ public class Main {
         // transakcja
         entityManager.getTransaction().begin();
         entityManager.persist(possibleTypes);
+        entityManager.getTransaction().commit();
+    }
+
+    private static void dateTimeExample(EntityManager entityManager) {
+        // utworzenie obiektu encji
+        DateTimeExample dateTimeExample = new DateTimeExample();
+        dateTimeExample.setLocalDateTime(LocalDateTime.now());
+
+        // transakcja
+        entityManager.getTransaction().begin();
+        entityManager.persist(dateTimeExample);
         entityManager.getTransaction().commit();
     }
 }
