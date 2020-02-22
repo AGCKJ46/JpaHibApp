@@ -1,5 +1,6 @@
 package net.ckj46;
 
+import net.ckj46.domain.Address;
 import net.ckj46.domain.DateTimeExample;
 import net.ckj46.domain.Employee;
 import net.ckj46.domain.PossibleTypes;
@@ -32,10 +33,13 @@ public class Main {
         employee.setLastName("Dupa-Kaczyński");
         employee.setSalary(1L);
 
-        employee.setLocality("Wypierdkowo");
-        employee.setStreet("Ujowa");
-        employee.setStreetNumber(666);
-        employee.setZipCode("99-666");
+        Address address = new Address();
+        address.setLocality("Wypierdkowo");
+        address.setStreet("Ujowa");
+        address.setStreetNumber(666);
+        address.setZipCode("99-666");
+
+        employee.setAddress(address);
 
         // transakcja
         entityManager.getTransaction().begin();
