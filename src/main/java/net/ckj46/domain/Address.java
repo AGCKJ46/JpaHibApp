@@ -1,16 +1,27 @@
 package net.ckj46.domain;
 
 
-import javax.persistence.Embeddable;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 
-@Embeddable
+@Entity
+@Table(name="Addresses")
 public class Address {
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    private Long id;
+
     private String locality;
     private String zipCode;
     private String street;
     private int streetNumber;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getLocality() {
         return locality;

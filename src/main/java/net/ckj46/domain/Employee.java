@@ -7,7 +7,6 @@ import javax.persistence.*;
 public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @Column(name="employeeId")
     private Long id;
 
     @Column(nullable = false, length=30)
@@ -19,7 +18,8 @@ public class Employee {
     @Column(nullable = false, precision = 5, scale = 0)
     private Long salary;
 
-    @Embedded
+    @OneToOne
+    @JoinColumn(name = "addressId") // ta adnotacja dodaje w tej encji kolumne z identyfikatorem adrersu
     private Address address;
 
     public Long getId() {

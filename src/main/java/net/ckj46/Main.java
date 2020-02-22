@@ -44,6 +44,7 @@ public class Main {
         // transakcja
         entityManager.getTransaction().begin();
         entityManager.persist(employee);
+        entityManager.persist(address);
         entityManager.getTransaction().commit();
     }
 
