@@ -17,9 +17,9 @@ public class Main {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("mysql");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
 
-        // employeePersist(entityManager);
+        employeePersist(entityManager);
         // possibleTypes(entityManager);
-        dateTimeExample(entityManager);
+        // dateTimeExample(entityManager);
 
         entityManager.close();
         entityManagerFactory.close();
@@ -31,6 +31,11 @@ public class Main {
         employee.setFirstName("Jarosław");
         employee.setLastName("Dupa-Kaczyński");
         employee.setSalary(1L);
+
+        employee.setLocality("Wypierdkowo");
+        employee.setStreet("Ujowa");
+        employee.setStreetNumber(666);
+        employee.setZipCode("99-666");
 
         // transakcja
         entityManager.getTransaction().begin();

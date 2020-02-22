@@ -4,6 +4,9 @@ import javax.persistence.*;
 
 @Entity
 @Table(name="Employees")
+// pkJoinColumns pozwala jak ma się nazywać kolumna z kluczem obcym z tab. Employees w tab. Addresses
+// @SecondaryTable(name = "Addresses", pkJoinColumns = @PrimaryKeyJoinColumn(name = "employeeId"))
+@SecondaryTable(name = "Addresses")
 public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
@@ -19,11 +22,20 @@ public class Employee {
     @Column(nullable = false, precision = 5, scale = 0)
     private Long salary;
 
-    public long getId() {
+    @Column(table = "Addresses")
+    private String locality;
+    @Column(table = "Addresses")
+    private String zipCode;
+    @Column(table = "Addresses")
+    private String street;
+    @Column(table = "Addresses")
+    private int streetNumber;
+
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -49,5 +61,37 @@ public class Employee {
 
     public void setSalary(Long salary) {
         this.salary = salary;
+    }
+
+    public String getLocality() {
+        return locality;
+    }
+
+    public void setLocality(String locality) {
+        this.locality = locality;
+    }
+
+    public String getZipCode() {
+        return zipCode;
+    }
+
+    public void setZipCode(String zipCode) {
+        this.zipCode = zipCode;
+    }
+
+    public String getStreet() {
+        return street;
+    }
+
+    public void setStreet(String street) {
+        this.street = street;
+    }
+
+    public int getStreetNumber() {
+        return streetNumber;
+    }
+
+    public void setStreetNumber(int streetNumber) {
+        this.streetNumber = streetNumber;
     }
 }
