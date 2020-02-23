@@ -54,4 +54,15 @@ public class Address {
     public void setStreetNumber(int streetNumber) {
         this.streetNumber = streetNumber;
     }
+
+    @Override
+    public String toString() {
+        return "Address{" +
+                "id=" + id +
+                ", locality='" + locality + '\'' +
+                ", zipCode='" + zipCode + '\'' +
+                ", street='" + street + '\'' +
+                ", streetNumber=" + streetNumber +
+                '}';
+    }
 }
