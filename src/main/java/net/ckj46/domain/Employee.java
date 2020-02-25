@@ -2,6 +2,12 @@ package net.ckj46.domain;
 
 import javax.persistence.*;
 
+/*
+    create trigger calculate_tax
+    before insert on Employees for each row
+    set new.tax=new.salary*0.2;
+*/
+
 @Entity
 @Table(name="Employees")
 public class Employee {
@@ -21,6 +27,8 @@ public class Employee {
     @OneToOne
     @JoinColumn(name = "addressId") // ta adnotacja dodaje w tej encji kolumne z identyfikatorem adrersu
     private Address address;
+
+    private double tax;
 
     public Long getId() {
         return id;
@@ -54,12 +62,12 @@ public class Employee {
         this.salary = salary;
     }
 
-    public Address getAddress() {
-        return address;
-    }
+    public Address getAddress() {return address;}
 
-    public void setAddress(Address address) {
-        this.address = address;
+    public void setAddress(Address address) {this.address = address;}
+
+    public double getTax() {
+        return tax;
     }
 
     @Override
@@ -70,6 +78,7 @@ public class Employee {
                 ", lastName='" + lastName + '\'' +
                 ", salary=" + salary +
                 ", address=" + address.toString() +
+                ", tax=" + tax +
                 '}';
     }
 }

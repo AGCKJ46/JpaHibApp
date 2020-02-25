@@ -30,22 +30,30 @@ public class Main {
         // utworzenie obiektu encji
         Employee employee = new Employee();
         employee.setFirstName("Jarosław");
-        employee.setLastName("Dupa-Kaczyński");
-        employee.setSalary(1L);
+        employee.setLastName("Uj-Kaczyński");
+        employee.setSalary(10L);
 
         Address address = new Address();
-        address.setLocality("Wypierdkowo");
+        address.setLocality("Wypierdkowo Wielkie");
         address.setStreet("Ujowa");
         address.setStreetNumber(666);
         address.setZipCode("99-666");
 
         employee.setAddress(address);
 
+        System.out.println(employee.toString());
+
         // transakcja
         entityManager.getTransaction().begin();
         entityManager.persist(employee);
         entityManager.persist(address);
         entityManager.getTransaction().commit();
+
+        System.out.println(employee.toString());
+
+        entityManager.refresh(employee);
+
+        System.out.println(employee.toString());
     }
 
     private static void possibleTypes(EntityManager entityManager) {
