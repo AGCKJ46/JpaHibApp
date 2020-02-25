@@ -12,8 +12,13 @@ public class MainForFindAndModify {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("mysql");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
 
+        entityManager.getTransaction().begin();
         Employee employee = entityManager.find(Employee.class, 1L);
+        System.out.println("Employee: " + employee.toString());
+        employee.setSalary(0L);
+        entityManager.getTransaction().commit();
 
+        employee = entityManager.find(Employee.class, 1L);
         System.out.println("Employee: " + employee.toString());
 
         entityManager.close();
