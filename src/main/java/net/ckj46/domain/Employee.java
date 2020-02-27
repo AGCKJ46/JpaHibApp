@@ -30,6 +30,15 @@ public class Employee {
 
     private double tax;
 
+    public Employee(String firstName, String lastName, Long salary, Address address) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.salary = salary;
+        this.address = address;
+    }
+
+    public Employee(){};
+
     public Long getId() {
         return id;
     }
