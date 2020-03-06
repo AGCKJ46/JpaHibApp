@@ -1,6 +1,8 @@
 package net.ckj46.domain;
 
 import javax.persistence.*;
+import java.util.LinkedList;
+import java.util.List;
 
 /*
     create trigger calculate_tax
@@ -29,6 +31,10 @@ public class Employee {
     private Address address;
 
     private double tax;
+
+    @OneToMany()
+    @JoinColumn(name = "employee_id")
+    List<Phone> phones = new LinkedList<>();
 
     public Employee(String firstName, String lastName, Long salary, Address address) {
         this.firstName = firstName;
@@ -79,6 +85,22 @@ public class Employee {
         return tax;
     }
 
+    public List<Phone> getPhones() {
+        return phones;
+    }
+
+    public void setPhones(List<Phone> phones) {
+        this.phones = phones;
+    }
+
+    public void addPhone(Phone phone) {
+        this.phones.add(phone);
+    }
+
+    public void removePhone(Phone phone) {
+        this.phones.remove(phone);
+    }
+
     @Override
     public String toString() {
         return "Employee{" +
@@ -88,6 +110,15 @@ public class Employee {
                 ", salary=" + salary +
                 ", address=" + address.toString() +
                 ", tax=" + tax +
+                ", phones=" + getPhonesAsString() +
                 '}';
+    }
+
+    private String getPhonesAsString(){
+        String phonesAsString=null;
+        for (Phone p: phones) {
+            phonesAsString += p.toString();
+        }
+        return phonesAsString;
     }
 }
