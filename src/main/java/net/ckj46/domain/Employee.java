@@ -26,14 +26,13 @@ public class Employee {
     @Column(nullable = false, precision = 5, scale = 0)
     private Long salary;
 
-    @OneToOne
+    @OneToOne()
     @JoinColumn(name = "addressId") // ta adnotacja dodaje w tej encji kolumne z identyfikatorem adrersu
     private Address address;
 
     private double tax;
 
-    @OneToMany()
-    @JoinColumn(name = "employee_id")
+    @OneToMany(mappedBy = "employee") // nazwa pola w Phone do którego odnosi się relacja
     List<Phone> phones = new LinkedList<>();
 
     public Employee(String firstName, String lastName, Long salary, Address address) {

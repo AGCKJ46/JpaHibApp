@@ -10,12 +10,23 @@ public class Phone {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEC_PHONE")
     private Long id;
 
-    String phoneType;
-    String phoneNumber;
+    private String phoneType;
+    private String phoneNumber;
+
+    @ManyToOne
+    @JoinColumn(name = "employee_id")
+    private Employee employee;
 
     public Phone(String phoneType, String phoneNumber) {
         this.phoneType = phoneType;
         this.phoneNumber = phoneNumber;
+        this.employee = null;
+    }
+
+    public Phone(String phoneType, String phoneNumber, Employee employee) {
+        this.phoneType = phoneType;
+        this.phoneNumber = phoneNumber;
+        this.employee = employee;
     }
 
     public Long getId() {
@@ -40,6 +51,14 @@ public class Phone {
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
+    }
+
+    public Employee getEmployee() {
+        return employee;
+    }
+
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
     }
 
     @Override
