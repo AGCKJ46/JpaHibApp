@@ -13,6 +13,11 @@ public class Project {
     private String name;
 
     @ManyToMany
+    @JoinTable(
+            name = "Employees_in_projects",
+            joinColumns = {@JoinColumn(name = "Project")},
+            inverseJoinColumns = {@JoinColumn(name = "Employee")}
+    )
     List<Employee> employees = new LinkedList<>();
 
     public Project(String name, List<Employee> employees) {
