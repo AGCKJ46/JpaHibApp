@@ -1,5 +1,4 @@
 package net.ckj46.domain;
-
 import javax.persistence.*;
 import java.util.LinkedList;
 import java.util.List;
@@ -34,6 +33,9 @@ public class Employee {
 
     @OneToMany(mappedBy = "employee") // nazwa pola w Phone do którego odnosi się relacja
     List<Phone> phones = new LinkedList<>();
+
+    @ManyToMany(mappedBy = "employees")
+    List<Project> projects = new LinkedList<>();
 
     public Employee(String firstName, String lastName, Long salary, Address address) {
         this.firstName = firstName;
@@ -100,6 +102,14 @@ public class Employee {
         this.phones.remove(phone);
     }
 
+    public List<Project> getProjects() {
+        return projects;
+    }
+
+    public void setProjects(List<Project> projects) {
+        this.projects = projects;
+    }
+
     @Override
     public String toString() {
         return "Employee{" +
@@ -110,14 +120,23 @@ public class Employee {
                 ", address=" + address.toString() +
                 ", tax=" + tax +
                 ", phones=" + getPhonesAsString() +
+                ", projects=" + getProjectsAsString() +
                 '}';
     }
 
     private String getPhonesAsString(){
-        String phonesAsString=null;
+        String phonesAsString="";
         for (Phone p: phones) {
             phonesAsString += p.toString();
         }
         return phonesAsString;
+    }
+
+    private String getProjectsAsString(){
+        String projectsAsString="";
+        for (Project p: projects) {
+            projectsAsString += p.toString();
+        }
+        return projectsAsString;
     }
 }
